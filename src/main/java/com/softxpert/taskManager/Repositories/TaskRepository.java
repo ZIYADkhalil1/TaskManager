@@ -2,8 +2,8 @@ package com.softxpert.taskManager.Repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.softxpert.taskManager.Entities.Users;
+import com.softxpert.taskManager.Entities.Task;
 
-public interface UsersRepository extends JpaRepository<Users, Long> {
+public interface TaskRepository extends JpaRepository<Task, Long> {
 
 }

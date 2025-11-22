@@ -1,5 +1,12 @@
 package com.softxpert.taskManager.Entities;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +17,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "users")
-public class Users {
+public class User implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -31,5 +38,15 @@ public class Users {
     
     @Column(name = "created_at")
     private java.time.LocalDateTime createdAt;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_" + this.role));
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
 
 }

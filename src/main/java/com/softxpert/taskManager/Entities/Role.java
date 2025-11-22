@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "roles")
-public class Roles {
+public class Role {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
