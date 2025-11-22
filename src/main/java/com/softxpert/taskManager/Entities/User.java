@@ -19,8 +19,8 @@ import lombok.Data;
 @Table(name = "users")
 public class User implements UserDetails{
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
@@ -33,7 +33,7 @@ public class User implements UserDetails{
     @Column(nullable = false)
     private String password;
     
-    @Column(nullable = false)
+    @Column(name = "role_id",nullable = false)
     private Integer role;
     
     @Column(name = "created_at")
