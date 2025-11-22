@@ -35,13 +35,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String path = request.getServletPath();
         System.out.println("REQUEST PATH: " + path);
 
-        // 🔥 Skip JWT filtering for ANY login path variation
+        // Skip JWT filtering for ANY login path variation
         if (path.startsWith("/auth/login")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // 🔥 Skip JWT filtering for requests without Authorization header
+        // Skip JWT filtering for requests without Authorization header
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
