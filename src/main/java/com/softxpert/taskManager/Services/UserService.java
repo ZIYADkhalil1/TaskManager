@@ -8,7 +8,6 @@ import com.softxpert.taskManager.Entities.User;
 import com.softxpert.taskManager.Repositories.UserRepository;
 
 import lombok.AllArgsConstructor;
-import tools.jackson.databind.ObjectMapper;
 
 @Service
 @AllArgsConstructor
