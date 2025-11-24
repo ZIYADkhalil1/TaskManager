@@ -1,6 +1,7 @@
 package com.softxpert.taskManager.Entities;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -23,7 +24,7 @@ public class Task {
 	private String title;
 	private String description;
 	@Column(name = "due_date")
-	private java.time.LocalDateTime dueDate;
+	private LocalDate dueDate;
 	private Integer assignee;
 	@Column(name = "created_at")
 	private java.time.LocalDateTime createdAt;

@@ -1,5 +1,6 @@
 package com.softxpert.taskManager.Services;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -93,9 +94,9 @@ public class TaskService {
 	 */
 	public List<TaskWithDependencies> getFilteredTasks(
 	        Integer assignee,
-	        TaskStatus status,
-	        LocalDateTime dueFrom,
-	        LocalDateTime dueTo
+	        Integer status,
+	        LocalDate dueFrom,
+	        LocalDate dueTo
 	) {
 
 		Specification<Task> spec = (root, query, cb) -> cb.conjunction();
@@ -108,7 +109,7 @@ public class TaskService {
 
 	    if (status != null) {
 	        spec = spec.and((root, query, cb) ->
-	                cb.equal(root.get("status"), status));
+	                cb.equal(root.get("statusId"), status));
 	    }
 
 	    if (dueFrom != null) {

@@ -1,5 +1,6 @@
 package com.softxpert.taskManager.Controllers;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -58,11 +59,11 @@ public class TaskController {
 	@GetMapping()
 	public List<TaskWithDependencies> getFilteredTasks(
 	        @RequestParam(required = false) Integer assignee,
-	        @RequestParam(required = false) TaskStatus status,
+	        @RequestParam(required = false) Integer status,
 	        @RequestParam(required = false)
-	        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dueFrom,
+	        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueFrom,
 	        @RequestParam(required = false)
-	        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dueTo
+	        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueTo
 	) {
 	    return taskService.getFilteredTasks(assignee, status, dueFrom, dueTo);
 	}
@@ -98,7 +99,7 @@ public class TaskController {
 	
 	@PreAuthorize("hasAuthority('ROLE_1')")
 	@PutMapping("/updateTask/{taskId}")
-	public Task updateTask(@RequestParam Long taskId, @RequestBody UpdateTask task) {
+	public Task updateTask(@PathVariable Long taskId, @RequestBody UpdateTask task) {
 		return taskService.updateTask(taskId, task);
 	}
 }
