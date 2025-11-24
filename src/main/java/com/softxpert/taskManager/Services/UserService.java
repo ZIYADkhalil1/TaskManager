@@ -16,6 +16,13 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     
+    /**
+     * Registers a new user in the system.
+     * Validates uniqueness of email, encodes password, and saves the user.
+     *
+     * @param newUser the registration request containing user details
+     * @return a status message indicating success or failure
+     */
 	public String addUser(RegisterRequest newUser) {
 		if(userRepository.findByEmail(newUser.email()).isPresent()){
 			return("User Already Exists");

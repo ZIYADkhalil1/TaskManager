@@ -15,6 +15,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
+    /**
+     * Loads a user from the database using their email address.
+     *
+     * @param email the user's email
+     * @return UserDetails for authentication
+     * @throws UsernameNotFoundException if no user is found with the given email
+     */
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));

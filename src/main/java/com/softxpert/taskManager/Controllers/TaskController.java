@@ -1,7 +1,9 @@
 package com.softxpert.taskManager.Controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.softxpert.taskManager.DTOs.RegisterTask;
+import com.softxpert.taskManager.DTOs.TaskWithDependencies;
 import com.softxpert.taskManager.DTOs.UpdateTask;
 import com.softxpert.taskManager.Entities.Task;
+import com.softxpert.taskManager.Entities.TaskStatus;
 import com.softxpert.taskManager.Entities.User;
 import com.softxpert.taskManager.Services.TaskService;
 
@@ -52,12 +56,19 @@ public class TaskController {
 	
 	@PreAuthorize("hasAuthority('ROLE_1')")
 	@GetMapping()
-	public List<Task> getAllTasks(){
-		return taskService.getAllTasks();
+	public List<TaskWithDependencies> getFilteredTasks(
+	        @RequestParam(required = false) Integer assignee,
+	        @RequestParam(required = false) TaskStatus status,
+	        @RequestParam(required = false)
+	        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dueFrom,
+	        @RequestParam(required = false)
+	        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dueTo
+	) {
+	    return taskService.getFilteredTasks(assignee, status, dueFrom, dueTo);
 	}
 	
 	@GetMapping("/{id}")
-	public List<Task> getTasksOfAssignee(
+	public List<TaskWithDependencies> getTasksOfAssignee(
 	        @PathVariable Integer id,
 	        @AuthenticationPrincipal User user
 	) {
