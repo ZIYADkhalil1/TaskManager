@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.softxpert.taskManager.DTOs.LoginRequest;
 import com.softxpert.taskManager.DTOs.LoginResponse;
 import com.softxpert.taskManager.Entities.User;
-import com.softxpert.taskManager.Repositories.UserRepository;
 import com.softxpert.taskManager.Services.JwtService;
 
 import lombok.RequiredArgsConstructor;

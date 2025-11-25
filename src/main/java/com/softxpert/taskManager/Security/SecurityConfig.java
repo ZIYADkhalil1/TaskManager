@@ -24,6 +24,14 @@ public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
     private final CustomUserDetailsService userDetailsService;
 
+    /**
+     * Configures the application's security filter chain, including authentication,
+     * authorization rules, session management, and JWT filtering.
+     *
+     * @param http the {@link HttpSecurity} configuration object
+     * @return the configured {@link SecurityFilterChain}
+     * @throws Exception if an error occurs during security configuration
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -39,12 +47,24 @@ public class SecurityConfig {
 
         return http.build();
     }
-
+    
+    /**
+     * Creates and returns the application's password encoder, using BCrypt hashing.
+     *
+     * @return a {@link PasswordEncoder} instance
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    
+    /**
+     * Retrieves the {@link AuthenticationManager} from the authentication configuration.
+     *
+     * @param config the {@link AuthenticationConfiguration} providing authentication setup
+     * @return the configured {@link AuthenticationManager}
+     * @throws Exception if an authentication manager cannot be created
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
             throws Exception {

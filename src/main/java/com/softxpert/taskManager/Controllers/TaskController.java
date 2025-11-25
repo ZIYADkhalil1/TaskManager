@@ -1,7 +1,6 @@
 package com.softxpert.taskManager.Controllers;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +22,6 @@ import com.softxpert.taskManager.DTOs.RegisterTask;
 import com.softxpert.taskManager.DTOs.TaskWithDependencies;
 import com.softxpert.taskManager.DTOs.UpdateTask;
 import com.softxpert.taskManager.Entities.Task;
-import com.softxpert.taskManager.Entities.TaskStatus;
 import com.softxpert.taskManager.Entities.User;
 import com.softxpert.taskManager.Services.TaskService;
 
