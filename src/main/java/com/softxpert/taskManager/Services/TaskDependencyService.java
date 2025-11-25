@@ -15,7 +15,17 @@ public class TaskDependencyService {
 	private TaskDependencyRepository taskDependencyRepository;
 	
 
-	
+	/**
+	 * Adds a dependency relationship for a given task.
+	 *
+	 * <p>This method checks whether the dependency already exists for the specified task. 
+	 * If it does, no changes are made and an appropriate message is returned. Otherwise,
+	 * a new {@code TaskDependency} is created and persisted.</p>
+	 *
+	 * @param taskId        the ID of the task to which the dependency will be added
+	 * @param dependencyId  the ID of the task that will become a dependency
+	 * @return a message indicating whether the dependency was added or already exists
+	 */
 	public String addDependency(Long taskId, Long dependencyId) {
 	   
 		Optional<TaskDependency> existing =
@@ -35,8 +45,21 @@ public class TaskDependencyService {
 		
 	}
 	
-	
-	
+	/**
+	 * Updates an existing dependency of a task by replacing it with a new dependency.
+	 *
+	 * <p>The method performs two validations:
+	 * <ul>
+	 *   <li>Ensures the new dependency does not already exist for the task.</li>
+	 *   <li>Ensures the original dependency exists before attempting to update it.</li>
+	 * </ul>
+	 * If validations pass, the dependency is updated and saved.</p>
+	 *
+	 * @param taskId            the ID of the task whose dependency is being updated
+	 * @param oldDependencyId   the ID of the existing dependency to be replaced
+	 * @param newDependencyId   the ID of the new dependency to assign
+	 * @return a message indicating success or describing why the update could not be made
+	 */
 	public String editDependency(Long taskId, Long oldDependencyId, Long newDependencyId) {
 
 	    Optional<TaskDependency> checkDuplicate =
